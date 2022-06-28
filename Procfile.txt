@@ -1,1 +1,2 @@
-web: sh -c 'npm run start && npm run react-dev'
+web: node server/index.js
+web: webpack --mode development --watch
