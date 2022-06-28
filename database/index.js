@@ -3,12 +3,12 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://username:p4ssword@cluster0.ji0dqfy.mongodb.net/?retryWrites=true&w=majority";
 
 
-mongoose.connect(uri)
-// if (process.env.PROD == true) {
-//   mongoose.connect(uri)
-// } else {
-//   mongoose.connect('mongodb://localhost/fetcher');
-// }
+// mongoose.connect(uri)
+if (process.env.PROD == true) {
+  mongoose.connect(uri)
+} else {
+  mongoose.connect('mongodb://localhost/fetcher');
+}
 
 
 
