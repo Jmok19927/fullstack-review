@@ -6,7 +6,9 @@
   "scripts": {
     "react-dev": "webpack --mode development --watch",
     "server-dev": "npx nodemon server/index.js",
-    "start": "npm i -g webpack && npm i -g webpack-cli && npm run --yes react-dev & npm run server-dev"
+    "start": "npm i -g webpack && npm i -g webpack-cli && npm run --yes react-dev & npm run server-dev",
+    "postinstall": "webpack --config ./webpack.config.js --progress"
+
   },
   "author": "Beth Johnson",
   "license": "ISC",
