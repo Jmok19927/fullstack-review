@@ -4,18 +4,63 @@ import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       repos: []
     }
 
   }
 
+  componentDidMount() {
+    $.ajax({
+      type: "GET",
+      url: "/repos",
+      contentType: "application/json",
+      success: (data) => {
+        var dataArray = JSON.parse(data);
+        this.setState({repos: dataArray});
+      },
+      error: (err) => {
+        console.error('client index error', err)
+      }
+    })
+  }
+
   search (term) {
     console.log(`${term} was searched`);
+    var user = JSON.stringify({username: term});
     // TODO
+    $.ajax({
+      type: "POST",
+      url: "/repos",
+      data: user,
+      contentType: "application/json",
+      success: () => {
+        console.log(`search has posted ${user}, now getting/updating repos`)
+        setTimeout(() => {
+          $.ajax({
+            type: "GET",
+            url: "/repos",
+            contentType: "application/json",
+            success: (data) => {
+              var dataArray = JSON.parse(data);
+              this.setState({repos: dataArray});
+            },
+            error: (err) => {
+              console.error('client index error', err)
+            }
+          })
+        }, 1000)
+
+      },
+      error: () => {
+        console.log(`post request of ${user} failed`);
+      },
+    })
+    this.setState();
   }
 
   render () {
