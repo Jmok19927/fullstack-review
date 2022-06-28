@@ -40,6 +40,7 @@ class App extends React.Component {
       contentType: "application/json",
       success: () => {
         console.log(`search has posted ${user}, now getting/updating repos`)
+        //maybe refactor posting to the database later to take in a callback or something
         setTimeout(() => {
           $.ajax({
             type: "GET",
