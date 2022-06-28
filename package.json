@@ -6,7 +6,7 @@
   "scripts": {
     "react-dev": "webpack --mode development --watch",
     "server-dev": "npx nodemon server/index.js",
-    "start": "npx nodemon server/index.js"
+    "start": "npx node server/index.js && webpack --mode development --watch"
   },
   "author": "Beth Johnson",
   "license": "ISC",
